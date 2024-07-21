@@ -7,32 +7,6 @@
 
 ## Install
 
-```
-git clone --recurse-submodules git@github.com:pokercamp/engine.git
-```
-
-or if you have mistakenly done a plain `git clone`:
-
-```
-git clone git@github.com:pokercamp/engine.git
-git submodule update --init --recursive
-```
-
-## Repo structure
-
-aipc-challenges will have a number of different games built on a common game engine; the core game engine is developed at pokercamp/engine. The core game engine is included as a [git submodule](https://www.atlassian.com/git/tutorials/git-submodule) for each separate game. In effect, each folder named challenge-\* is a working directory on a separate branch of the pokercamp/engine repo. Each should already be put on its own branch, for example using:
-
-```
-cd challenge-1
-git checkout -b S24-challenge-1
-```
-
-The top-level repo contains a pointer to a certain repo and commit for each submodule (that is, each different challenge / game).
-
-The primary reason for this is because we may wish to push changes to the core engine (to all games), changes to a particular game (to all students), or you may wish to push your own changes.
-
-## Recommended git process
-
 We recommend you do the following in order to share your changes with others or with us (which you'll need to, in order to submit):
 
 1. On GitHub:
@@ -61,6 +35,14 @@ This should set things up such that when you work on Challenge 1 in the `/challe
   a. Commit them within the submodule directory, then push. This will go to the branch `S24-challenge-[N]-[username]`` in your repo `[username]/pokercamp-engine`. The `init.sh` script should have already set this up as the default of `git push`.
   
   b. At the top level of the `pokercamp-engine` repo, add the changes (which should appear as `modified file: challenge-1`), commit, and push. This will go to the `S24-[username]` branch (or whatever other branch you've switched to) in your repo `[username]/aipc-challenges`.
+
+## Repo structure
+
+aipc-challenges will have a number of different games built on a common game engine; the core game engine is developed at pokercamp/engine. The core game engine is included as a [git submodule](https://www.atlassian.com/git/tutorials/git-submodule) for each separate game. Each game has a branch in the pokercamp/engine repo where game-specific logic has been added.
+
+The top-level repo contains a pointer to a certain repo and commit for each submodule (that is, each different challenge / game).
+
+The primary reason for this is because we may wish to push changes to the core engine (to all games), changes to a particular game (to all students), or you may wish to push your own changes.
 
 ## Building and running bots
 
