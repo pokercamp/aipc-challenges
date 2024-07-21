@@ -75,10 +75,14 @@ export BOT_TO_SUBMIT="yourbot"
 ln -sf players/$BOT_TO_SUBMIT submit
 ```
 
-(It will probably be work if you put a directory called `submit` there instead of a symlink, but that just seems less convenient for you.)
+(It will probably still work if you put a directory called `submit` there instead of a symlink, but that just seems less convenient for you.)
 
 ### On our end
 
 On our end, we will periodically pull changes to the top-level repo, update the submodules if the top-level repo moves them forward to new commits, and look for a `submit/` link (or directory). If we find one, and it has a `commands.json`, then in each matchup we'll call the `build` command, then the `run` command. If you haven't modified `commands.json`, then `build` will do nothing and `run` will call `python3 player.py`. If you haven't changed the boilerplate of `player.py` and `skeleton/runner.py`, this should start up your bot and begin calling `handle_new_round()`, `handle_round_over()`, and the `get_action()` functions as the bot plays its matchup.
 
 If the version of your repo that we pull does not have a submodule folder for that challenge, or if the version of the submodule that we update to doesn't have a `submit` symlink or directory, or if that directory doesn't have a `commands.json`, then we'll drop you from that tournament run.
+
+## Receiving updates
+
+The short version is, if you set up with `init.sh` from earlier, `update.sh` should rebase our upstream updates through the layers of forks and branches. This will include our adding new challenge directories, updating core engine logic, and updating game-specific logic. If the rebase creates merge conflicts with your changes, you'll have to resolve them (or stay behind; we can't control your actions...)
