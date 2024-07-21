@@ -1,0 +1,9 @@
+[submodule "challenge-1"]
+	path = challenge-1
+	url = git@github.com:pokercamp/engine.git
+[submodule "challenge-2-100cardkuhn"]
+	path = challenge-2-100cardkuhn
+	url = git@github.com:pokercamp/engine.git
+[submodule "challenge-2-leduc"]
+	path = challenge-2-leduc
+	url = git@github.com:pokercamp/engine.git
