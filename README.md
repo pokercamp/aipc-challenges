@@ -39,45 +39,28 @@ We recommend you do the following in order to share your changes with others or 
 
   a. Fork pokercamp/aipc-challenges to [username]/aipc-challenges
   
-  b. If you created the repo fork as private, add GitHub users `rossry` and `chisness` as collaborators.
+  b. If you created the repo fork as private, add GitHub users `rossry` and `chisness` as collaborators with at least read permissions.
 
-2. Clone the fork to your local machine:
+  c. Fork pokercamp/engine to [username]/pokercamp-engine. **Note: You will only do this once, _not_ once for each challenge.**
+  
+  d. If you created the repo fork as private, add GitHub users `rossry` and `chisness` as collaborators with at least read permissions.
+
+2. Clone the fork to your local machine and run `init.sh`:
 
 ```
 export GITHUB_USERNAME=yourname
-git clone --recurse-submodules "git@github.com:$GITHUB_USERNAME/aipc-challenges.git"
-git remote add upstream git@github.com:pokercamp/aipc-challenges.pokercamp
-export BRANCH_NAME="S24-$GITHUB_USERNAME"
-git checkout -b $BRANCH_NAME
-git push -u origin $BRANCH_NAME
+git clone "git@github.com:$GITHUB_USERNAME/aipc-challenges.git"
+cd aipc-challenges.git
+echo "$GITHUB_USERNAME" | ./init.sh
 ```
 
-3. On GitHub:
+This should set things up such that when you work on Challenge 1 in the `/challenge-1/` directory, you are working on a personal branch `S24-challenge-1-[username]` that exists only in your `[username]/pokercamp-engine` repo, and that branch is based on our per-project branch `S24-challenge-1`, which exists in `pokercamp/engine`. In turn, the per-project branches are based on the `main` branch in `pokercamp/engine`.
 
-  a. Fork pokercamp/engine to [username]/pokercamp-engine. **You will only do this once, _not_ once for each challenge.**
+3. When you make changes to a submodule directory (like `/challenge-1/`):
+
+  a. Commit them within the submodule directory, then push. This will go to the branch `S24-challenge-[N]-[username]`` in your repo `[username]/pokercamp-engine`. The `init.sh` script should have already set this up as the default of `git push`.
   
-  b. If you created the repo fork as private, add GitHub users `rossry` and `chisness` as collaborators.
-
-4. When you begin working on each challenge, set that submodule to use a different branch in your fork of the engine:
-
-```
-export GITHUB_USERNAME="yourname"
-cd challenge-1
-git remote set-url origin "git@github.com:$GITHUB_USERNAME/pokercamp-engine.git
-git remote set-url upstream git@github.com:pokercamp/engine.git
-export CHALLENGE_NAME="challenge-1"
-export BRANCH_NAME="S24-$CHALLENGE_NAME-$GITHUB_USERNAME"
-git checkout -b $BRANCH_NAME
-git push -u origin $BRANCH_NAME
-```
-
-This should mean that for each project, you are working on a personal branch `S24-challenge-1-[username]` that exists only in your `[username]/pokercamp-engine` repo, and that branch is based on our per-project branch `S24-challenge-1`, which exists in `pokercamp/engine`. In turn, the per-project branches are based on the `main` branch in `pokercamp/engine`.
-
-5. When you make changes to a submodule directory (like `/challenge-1/`):
-
-  a. Commit them within the submodule directory, then push. This will go to the branch `S24-challenge-[N]-[username]`` in your repo `[username]/pokercamp-engine`.
-  
-  b. At the top level of the `pokercamp-engine` repo, add the changes `modified file: challenge-1`, commit, and push. This will go to the `S24-[username]` branch (or whatever other branch you've switched to) in your repo `[username]/aipc-challenges`.
+  b. At the top level of the `pokercamp-engine` repo, add the changes (which should appear as `modified file: challenge-1`), commit, and push. This will go to the `S24-[username]` branch (or whatever other branch you've switched to) in your repo `[username]/aipc-challenges`.
 
 ## Building and running bots
 
