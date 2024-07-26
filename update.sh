@@ -43,7 +43,7 @@ read -p "Enter your GitHub username: " GITHUB_USERNAME
 execute_and_log git fetch --all
 execute_and_log git rebase --root main --onto upstream/main
 execute_and_log git rebase --root "S24-$GITHUB_USERNAME" --onto main
-execute_and_log git submodule update
+execute_and_log git submodule update --remote --merge
 
 echo "(Update completed successfully!)"
 echo ""
