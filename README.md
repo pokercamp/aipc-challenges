@@ -24,7 +24,7 @@ We recommend you do the following in order to share your changes with others or 
 ```
 export GITHUB_USERNAME=yourname
 git clone "git@github.com:$GITHUB_USERNAME/aipc-challenges.git"
-cd aipc-challenges.git
+cd aipc-challenges
 echo "$GITHUB_USERNAME" | ./init.sh
 ```
 
