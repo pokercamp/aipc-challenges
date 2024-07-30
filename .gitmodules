@@ -12,3 +12,9 @@
     path = challenge-2-leduc
     url = git@github.com:pokercamp/engine.git
     branch = S24-challenge-2-leduc
+[submodule "challenge-3-rps"]
+	path = challenge-3-rps
+	url = git@github.com:pokercamp/engine.git
+[submodule "challenge-3-psmr"]
+	path = challenge-3-psmr
+	url = git@github.com:pokercamp/engine.git
