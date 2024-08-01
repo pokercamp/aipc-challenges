@@ -41,9 +41,27 @@ fi
 read -p "Enter your GitHub username: " GITHUB_USERNAME
 
 execute_and_log git fetch --all
-execute_and_log git rebase --root main --onto upstream/main
-execute_and_log git rebase --root "S24-$GITHUB_USERNAME" --onto main
-execute_and_log git submodule update --remote --merge
+execute_and_log git checkout "S24-$GITHUB_USERNAME"
+execute_and_log git fetch upstream main:main
+execute_and_log git rebase main
+
+submodules=$(git config --file .gitmodules --get-regexp path | awk '{ print $2 }')
+
+for submodule in $submodules; do
+    echo "Processing submodule: $submodule"
+    (
+        cd "$submodule"
+        execute_and_log git fetch --all
+        execute_and_log git checkout "S24-$submodule-$GITHUB_USERNAME"
+        execute_and_log git fetch upstream "S24-$submodule:S24-$submodule"
+        execute_and_log git rebase "S24-$submodule"
+        
+        execute_and_log git push -f origin "S24-$submodule-$GITHUB_USERNAME"
+    )
+done
+
+execute_and_log git push -f origin "S24-$GITHUB_USERNAME"
+execute_and_log git push origin main
 
 echo "(Update completed successfully!)"
 echo ""
