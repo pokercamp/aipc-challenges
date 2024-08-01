@@ -84,7 +84,8 @@ echo "(Configure submodules...)"
 execute_and_log git submodule update --init --recursive
 
 # Set up each challenge submodule
-for CHALLENGE_NAME in challenge-1 challenge-2-100cardkuhn challenge-2-leduc challenge-3-psmr; do
+submodules=$(git config --file .gitmodules --get-regexp path | awk '{ print $2 }')
+for CHALLENGE_NAME in $submodules; do
     cd $CHALLENGE_NAME || { exit 1; }
     IN_SUBMODULE=true
     
