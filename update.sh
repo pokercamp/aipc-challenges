@@ -53,7 +53,7 @@ for submodule in $submodules; do
         cd "$submodule"
         execute_and_log git fetch --all
         execute_and_log git checkout "S24-$submodule-$GITHUB_USERNAME"
-        execute_and_log git fetch upstream "S24-$submodule:S24-$submodule"
+        execute_and_log git fetch upstream "+S24-$submodule:S24-$submodule"
         execute_and_log git rebase "S24-$submodule"
         
         execute_and_log git push -f origin "S24-$submodule-$GITHUB_USERNAME"
