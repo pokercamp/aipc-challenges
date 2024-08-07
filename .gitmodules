@@ -16,3 +16,6 @@
 [submodule "challenge-3-psmr"]
 	path = challenge-3-psmr
 	url = git@github.com:pokercamp/engine.git
+[submodule "challenge-4-holdem"]
+	path = challenge-4-holdem
+	url = git@github.com:pokercamp/engine.git
